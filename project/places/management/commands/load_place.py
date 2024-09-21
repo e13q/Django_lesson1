@@ -1,0 +1,46 @@
+import json
+import os
+from django.core.management.base import BaseCommand
+from urllib.request import urlopen
+from places.models import Place, Image
+
+
+class Command(BaseCommand):
+    help = 'Add places from JSON data'
+
+    def add_arguments(self, parser):
+        parser.add_argument('json_file', type=str, help='Path to the JSON file')
+
+    def handle(self, *args, **kwargs):
+        json_file = kwargs['json_file']
+        
+        with open(json_file, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+            place, created = Place.objects.get_or_create(
+                title=data['title'],
+                defaults={
+                    'description_short': data['description_short'],
+                    'description_long': data['description_long'],
+                    'coordinates_lng': data['coordinates']['lng'],
+                    'coordinates_lat': data['coordinates']['lat'],
+                }
+            )
+            if created:
+                self.stdout.write(self.style.SUCCESS(f"Place '{place.title}' created"))
+            else:
+                self.stdout.write(self.style.WARNING(f"Place '{place.title}' already exists"))
+
+            for index, img_url in enumerate(data['imgs']):
+                img_temp = urlopen(img_url)
+                img, _ = Image.objects.get_or_create(
+                    place=place, ordinal_number=index + 1,
+                    defaults={
+                        'ordinal_number': index + 1,
+                        'place': place,
+                    }
+                )
+                img.image.save(os.path.basename(img_url), img_temp, save=True)
+                img.save()
+                
+            self.stdout.write(self.style.SUCCESS(f"Images added to place '{place.title}'"))
