@@ -18,3 +18,7 @@ class Image(models.Model):
 
     def __str__(self):
         return f'{self.ordinal_number} {self.place.title}'
+    
+    class Meta:
+        ordering = ['ordinal_number']
+        
