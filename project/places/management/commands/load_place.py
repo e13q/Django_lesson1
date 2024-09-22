@@ -30,6 +30,7 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f"Place '{place.title}' created"))
                 else:
                     self.stdout.write(self.style.WARNING(f"Place '{place.title}' already exists"))
+                    return None
 
                 for index, img_url in enumerate(data['imgs']):
                     img_temp = urlopen(img_url)
