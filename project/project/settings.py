@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import json
+
+from environs import Env
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,14 +27,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=6kuoa+#bpud$zk6_@$z1q$191^5z5v9-qs*llpdk9pb0%eq(9'
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
-
+# Deploy settings
+ALLOWED_HOSTS = json.loads(env("ALLOWED_HOSTS"))
+CSRF_TRUSTED_ORIGINS = json.loads(env("CROSS_OR"))
+CORS_ORIGIN_WHITELIST = json.loads(env("CROSS_OR"))
+SECURE_HSTS_SECONDS = env("SECURE_HSTS_SECONDS")
+SESSION_COOKIE_SECURE = env("SESSION_COOKIE_SECURE")
+CSRF_COOKIE_SECURE = env("CSRF_COOKIE_SECURE")
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_PRELOAD = True
 # Application definition
 
 INSTALLED_APPS = [
