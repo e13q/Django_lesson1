@@ -28,11 +28,15 @@ CSRF_COOKIE_SECURE = True
 
 Потребуется выполнить первую миграцию
 
-`python3 backend/manage.py migrate`
+```
+python3 backend/manage.py migrate
+```
 
 Также, для взаимодействия с админ-панелью необходимо создать суперпользователя:
 
-`python3 backend/manage.py createsuperuser`
+```
+python3 backend/manage.py createsuperuser
+```
 
 Заполнить базу данных можно с помощью админки, а также воспользовавшись менеджмент скриптом.
 Пример:
@@ -64,13 +68,6 @@ https://ваш_сайт/places/{id}
 Например:
 ```
 https://e13here.pythonanywhere.com/places/1/
-```
-
-### Команды запуска
-
-Команда для запуска бота
-```
-python3 backend/manage.py runbot
 ```
 
 Команда для запуска сервера  
