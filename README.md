@@ -25,6 +25,17 @@ SECURE_HSTS_SECONDS = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 ```
+DJANGO_SECRET_KEY — это секретный ключ, используемый Django для обеспечения безопасности, например, для подписания cookies, защиты CSRF и других важных функций. Он должен быть уникальным и секретным.
+
+ALLOWED_HOSTS — список доменных имен или IP-адресов, с которых разрешены запросы к вашему Django-приложению.
+
+CROSS_OR — список доменов, с которых разрешены междоменные запросы (Cross-Origin Resource Sharing, CORS). Позволяет определенным источникам делать запросы к вашему API.
+
+SECURE_HSTS_SECONDS — включает HTTP Strict Transport Security (HSTS).
+
+SESSION_COOKIE_SECURE — указывает, что куки сессии должны передаваться только по HTTPS. Это помогает защитить данные от перехвата.
+
+CSRF_COOKIE_SECURE — указывает, что CSRF-куки также должны передаваться только по HTTPS, что добавляет уровень защиты от атак.
 
 Потребуется выполнить первую миграцию
 
