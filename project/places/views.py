@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from places.models import Place
 import json
-from django.core.serializers import serialize
+
 from django.http import HttpResponse, HttpRequest, JsonResponse
+from django.core.serializers import serialize
+from django.shortcuts import render
+
+from places.models import Place
 
 def serialize_places(places: list):
     return {

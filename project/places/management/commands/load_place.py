@@ -1,7 +1,9 @@
 import json
 import os
-from django.core.management.base import BaseCommand
 from urllib.request import urlopen
+
+from django.core.management.base import BaseCommand
+
 from places.models import Place, Image
 
 
