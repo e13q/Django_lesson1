@@ -20,6 +20,7 @@ env = Env()
 env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -27,12 +28,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = False
 
 # Deploy settings
+
 ALLOWED_HOSTS = json.loads(env("ALLOWED_HOSTS"))
 CSRF_TRUSTED_ORIGINS = json.loads(env("CROSS_OR"))
 CORS_ORIGIN_WHITELIST = json.loads(env("CROSS_OR"))
@@ -42,6 +46,7 @@ CSRF_COOKIE_SECURE = env("CSRF_COOKIE_SECURE")
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_SSL_REDIRECT = True
 SECURE_HSTS_PRELOAD = True
+
 # Application definition
 
 INSTALLED_APPS = [

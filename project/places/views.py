@@ -50,8 +50,5 @@ def show_index(request):
 
 
 def get_place(request, place_id):
-   # print(place_id)
-    place = Place.objects.get(id=place_id)
-    #print(place.images)
-    
+    place = Place.objects.get(id=place_id)    
     return JsonResponse(serialize_place_json(place))
