@@ -15,27 +15,34 @@ Python3 должен быть установлен версии 3.7
 pip install -r requirements.txt
 ```
 
-Для корректной работы потребуется файл .env  
-Пример:
-```
-DJANGO_SECRET_KEY = 'key'
-ALLOWED_HOSTS = '["127.0.0.1", ".pythonanywhere.com"]'
-CROSS_OR = '["http://*.pythonanywhere.com"]'
-SECURE_HSTS_SECONDS = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-```
+Для корректной работы потребуется файл .env, содержащий обязательные переменные DJANGO_SECRET_KEY, ALLOWED_HOSTS, CROSS_OR
+
 DJANGO_SECRET_KEY — это секретный ключ, используемый Django для обеспечения безопасности, например, для подписания cookies, защиты CSRF и других важных функций. Он должен быть уникальным и секретным.
 
 ALLOWED_HOSTS — список доменных имен или IP-адресов, с которых разрешены запросы к вашему Django-приложению.
 
 CROSS_OR — список доменов, с которых разрешены междоменные запросы (Cross-Origin Resource Sharing, CORS). Позволяет определенным источникам делать запросы к вашему API.
 
+Пример:
+```
+DJANGO_SECRET_KEY = 'key'
+ALLOWED_HOSTS = '["127.0.0.1", ".pythonanywhere.com"]'
+CROSS_OR = '["http://*.pythonanywhere.com"]'
+```
+Также, в .env можно указать SECURE_HSTS_SECONDS, SESSION_COOKIE_SECURE, CSRF_COOKIE_SECURE
+
 SECURE_HSTS_SECONDS — включает HTTP Strict Transport Security (HSTS).
 
 SESSION_COOKIE_SECURE — указывает, что куки сессии должны передаваться только по HTTPS. Это помогает защитить данные от перехвата.
 
 CSRF_COOKIE_SECURE — указывает, что CSRF-куки также должны передаваться только по HTTPS, что добавляет уровень защиты от атак.
+
+Пример:
+```
+SECURE_HSTS_SECONDS = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+```
 
 Потребуется выполнить первую миграцию
 
