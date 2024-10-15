@@ -9,7 +9,7 @@ def serialize_places(places: list):
         "type": "FeatureCollection",
         "features": places
     }
-    
+
 
 def serialize_place(place: Place):
     return {
@@ -34,16 +34,16 @@ def serialize_place_json(place: Place):
         "description_long": place.long_description,
         "coordinates": {
             "lat": place.latitude,
-            "lng": place.longitude            
-        }        
+            "lng": place.longitude
+        }
     }
 
 
 def show_index(request):
-    places = []    
+    places = []
     db_places = Place.objects.all()
     for place in db_places:
-        places.append(serialize_place(place))        
+        places.append(serialize_place(place))
     context = {
         "geojson": serialize_places(places)
     }
@@ -51,5 +51,5 @@ def show_index(request):
 
 
 def get_place(request, place_id):
-    place = Place.objects.get(id=place_id)    
+    place = Place.objects.get(id=place_id)
     return JsonResponse(serialize_place_json(place))

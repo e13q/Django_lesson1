@@ -15,7 +15,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         json_url = kwargs['json_url']
-        
         try:
             with urlopen(json_url) as file:
                 data = json.load(file)
@@ -29,7 +28,9 @@ class Command(BaseCommand):
                     }
                 )
                 if created:
-                    self.stdout.write(self.style.SUCCESS(f"Place '{place.title}' created"))
+                    self.stdout.write(
+                        self.style.SUCCESS(f"Place '{place.title}' created")
+                    )
                     for index, img_url in enumerate(data['imgs']):
                         img_temp = urlopen(img_url)
                         img, _ = Image.objects.get_or_create(
@@ -39,11 +40,19 @@ class Command(BaseCommand):
                                 'place': place,
                             }
                         )
-                        img.image.save(os.path.basename(img_url), img_temp, save=True)
-                        img.save()                    
-                    self.stdout.write(self.style.SUCCESS(f"Images added to place '{place.title}'"))
+                        img.image.save(
+                            os.path.basename(img_url),
+                            img_temp,
+                            save=True
+                        )
+                        img.save()
+                    self.stdout.write(self.style.SUCCESS(
+                        f"Images added to place '{place.title}'"
+                    ))
                 else:
-                    self.stdout.write(self.style.WARNING(f"Place '{place.title}' already exists"))
-                    return None                
+                    self.stdout.write(self.style.WARNING(
+                        f"Place '{place.title}' already exists"
+                    ))
+                    return None
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Error: {str(e)}"))
