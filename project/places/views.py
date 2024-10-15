@@ -18,7 +18,7 @@ def serialize_place(place: Place):
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [place.coordinates_lng, place.coordinates_lat]
+            "coordinates": [place.longitude, place.latitude]
         },
             "properties": {
             "title": place.title,
@@ -31,11 +31,11 @@ def serialize_place_json(place: Place):
     return {
         "title": place.title,
         "imgs": [object.image.url for object in place.images.all()],
-        "description_short": place.description_short,
-        "description_long": place.description_long,
+        "description_short": place.short_description,
+        "description_long": place.long_description,
         "coordinates":{
-            "lat": place.coordinates_lat,
-            "lng": place.coordinates_lng            
+            "lat": place.latitude,
+            "lng": place.longitude            
         }        
     }
 
@@ -47,7 +47,6 @@ def show_index(request):
     context = {
         "geojson": serialize_places(places)
     }
-    print(context)
     return render(request, 'index.html', context)
 
 

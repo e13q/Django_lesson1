@@ -22,14 +22,14 @@ env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -37,16 +37,15 @@ DEBUG = env.bool("DEBUG", False)
 
 # Deploy settings
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-CSRF_TRUSTED_ORIGINS = env.list("CROSS_OR")
-CORS_ORIGIN_WHITELIST = env.list("CROSS_OR")
-SECURE_HSTS_SECONDS = env.bool("SECURE_HSTS_SECONDS", True)
-SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", True)
-CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", True)
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_PRELOAD = True
-
+ALLOWED_HOSTS = env.json("ALLOWED_HOSTS")
+CSRF_TRUSTED_ORIGINS = env.json("CROSS_OR")
+CORS_ORIGIN_WHITELIST = env.json("CROSS_OR")
+SECURE_HSTS_SECONDS = env.bool("SECURE_HSTS_SECONDS", default=True)
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=True)
+SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", default=True)
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True)
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
 # Application definition
 
 INSTALLED_APPS = [
@@ -140,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 # Default primary key field type
