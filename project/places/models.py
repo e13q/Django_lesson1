@@ -14,13 +14,20 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images', verbose_name="Интересное место")
-    ordinal_number = models.IntegerField(verbose_name="Порядок картинки")
+    ordinal_number = models.PositiveIntegerField(
+        verbose_name="Порядок картинки",
+        default=0,
+        blank=False,
+        null=False,
+    )
+
     image = models.ImageField(verbose_name="Картинка")
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images', verbose_name="Интересное место")
+
+    class Meta:
+        ordering = ['ordinal_number']
 
     def __str__(self):
         return f'{self.ordinal_number} {self.place.title}'
-    
-    class Meta:
-        ordering = ['ordinal_number']
+
         
