@@ -19,6 +19,7 @@ class Image(models.Model):
         default=0,
         blank=False,
         null=False,
+        db_index=True
     )
 
     image = models.ImageField(verbose_name="Картинка")
