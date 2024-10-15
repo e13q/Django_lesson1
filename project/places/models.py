@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 from tinymce.models import HTMLField
 
@@ -31,4 +32,7 @@ class Image(models.Model):
     def __str__(self):
         return f'{self.ordinal_number} {self.place.title}'
 
-        
+    def image_preview(self):
+        if self.image:
+            return format_html('<img src="{}" style="max-width: 255px; max-height: 200px;" />', self.image.url)
+        return ""    
