@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from places.models import Place
@@ -52,5 +52,5 @@ def show_index(request):
 
 
 def get_place(request, place_id):
-    place = Place.objects.get(id=place_id)
+    place = get_object_or_404(Place, id=place_id)
     return JsonResponse(serialize_place_json(place))
