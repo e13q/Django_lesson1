@@ -52,5 +52,7 @@ def show_index(request):
 
 
 def get_place(request, place_id):
-    place = get_object_or_404(Place, id=place_id)
+    place = get_object_or_404(
+        Place.objects.prefetch_related('images'), id=place_id
+    )
     return JsonResponse(serialize_place_json(place))
