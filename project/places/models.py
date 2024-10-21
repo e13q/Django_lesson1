@@ -7,16 +7,16 @@ from tinymce.models import HTMLField
 class Place(models.Model):
     title = models.CharField(
         max_length=200,
-        verbose_name="Название места",
+        verbose_name='Название места',
         unique=True
     )
     short_description = models.TextField(
         blank=True,
-        verbose_name="Краткое описание"
+        verbose_name='Краткое описание'
     )
-    long_description = HTMLField(blank=True, verbose_name="Полное описание")
-    longitude = models.FloatField(verbose_name="Долгота")
-    latitude = models.FloatField(verbose_name="Широта")
+    long_description = HTMLField(blank=True, verbose_name='Полное описание')
+    longitude = models.FloatField(verbose_name='Долгота')
+    latitude = models.FloatField(verbose_name='Широта')
 
     def __str__(self) -> str:
         return self.title
@@ -24,19 +24,19 @@ class Place(models.Model):
 
 class Image(models.Model):
     ordinal_number = models.PositiveIntegerField(
-        verbose_name="Порядок картинки",
+        verbose_name='Порядок картинки',
         default=0,
         blank=False,
         null=False,
         db_index=True
     )
 
-    image = models.ImageField(verbose_name="Картинка")
+    image = models.ImageField(verbose_name='Картинка')
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
         related_name='images',
-        verbose_name="Интересное место"
+        verbose_name='Интересное место'
     )
 
     class Meta:
@@ -51,4 +51,4 @@ class Image(models.Model):
                 '<img src="{}" style="max-width: 255px; max-height: 200px;" />',
                 self.image.url
             )
-        return ""
+        return ''

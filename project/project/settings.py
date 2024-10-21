@@ -6,20 +6,20 @@ from environs import Env
 env = Env()
 env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = env.str("DJANGO_SECRET_KEY")
-DEBUG = env.bool("DEBUG", False)
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost"])
-CSRF_TRUSTED_ORIGINS = env.list("CROSS_OR", default=["localhost"])
-CORS_ORIGIN_WHITELIST = env.list("CROSS_OR", default=["localhost"])
-SECURE_HSTS_SECONDS = env.bool("SECURE_HSTS_SECONDS", default=True)
-SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=True)
-SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", default=True)
-CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
+DEBUG = env.bool('DEBUG', False)
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'])
+CSRF_TRUSTED_ORIGINS = env.list('CROSS_OR', default=['localhost'])
+CORS_ORIGIN_WHITELIST = env.list('CROSS_OR', default=['localhost'])
+SECURE_HSTS_SECONDS = env.bool('SECURE_HSTS_SECONDS', default=True)
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=True)
+SECURE_HSTS_PRELOAD = env.bool('SECURE_HSTS_PRELOAD', default=True)
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=True)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
-    "SECURE_HSTS_INCLUDE_SUBDOMAINS",
+    'SECURE_HSTS_INCLUDE_SUBDOMAINS',
     default=True
 )
-SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
+SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -83,7 +83,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

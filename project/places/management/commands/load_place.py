@@ -30,7 +30,7 @@ class Command(BaseCommand):
             )
             if created:
                 self.stdout.write(
-                    self.style.SUCCESS(f"Place '{place.title}' created")
+                    self.style.SUCCESS(f'Place {place.title} created')
                 )
                 for index, img_url in enumerate(raw_place['imgs']):
                     raw_img = requests.get(img_url)
@@ -47,16 +47,16 @@ class Command(BaseCommand):
                         }
                     )
                 self.stdout.write(self.style.SUCCESS(
-                    f"Images added to place '{place.title}'"
+                    f'Images added to place {place.title}'
                 ))
             else:
                 self.stdout.write(self.style.WARNING(
-                    f"Place '{place.title}' already exists"
+                    f'Place {place.title} already exists'
                 ))
                 return None
         except Place.MultipleObjectsReturned as e:
             self.stdout.write(self.style.ERROR(
-                f"Multiple objects returned: {str(e)}"
+                f'Multiple objects returned: {str(e)}'
             ))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f"Error: {str(e)}"))
+            self.stdout.write(self.style.ERROR(f'Error: {str(e)}'))

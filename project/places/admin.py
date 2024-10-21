@@ -9,7 +9,7 @@ from places.models import Image, Place
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     extra = 0
-    readonly_fields = ["image_preview", ]
+    readonly_fields = ['image_preview', ]
     fields = ['image', 'image_preview',]
 
     def image_preview(self, obj):
@@ -26,5 +26,5 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    raw_id_fields = ("place",)
+    raw_id_fields = ('place',)
     readonly_fields = ['image_preview']
